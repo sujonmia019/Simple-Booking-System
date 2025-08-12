@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('service_id')->constrained('services')->cascadeOnDelete();
             $table->date('booking_date');
-            $table->string('status', [1,2,3])->default(1)->comment('1 = Pending, 2 = Confirmed, 3 = Cancelled');
+            $table->enum('status', [1,2,3])->default(1)->comment('1 = Pending, 2 = Confirmed, 3 = Cancelled');
             $table->timestamps();
         });
     }
