@@ -1,32 +1,19 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Customer\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Customer Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can register customer routes for your customer user. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
 */
 
-Auth::routes([
-    'password.request',
-    'password.confirm',
-    'password.email',
-    'password.reset',
-    'password.update'
-]);
-
-// Admin Group Routes
-Route::middleware(['auth', 'role:admin'])->name('admin.')->group(function () {
+Route::middleware(['auth', 'role:customer'])->prefix('portal')->name('customer.')->group(function () {
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
 });
-
-
-
