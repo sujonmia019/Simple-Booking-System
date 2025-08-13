@@ -2,7 +2,7 @@
 @section('title', 'Signin')
 @section('content')
     <!-- Login Header -->
-    @include('auth.include.topbar', ['content'=>'Sign in to access your administrative dashboard'])
+    @include('auth.include.topbar', ['content'=>'Sign in to access your customer dashboard'])
 
     <form id="adminLoginForm">
         <div class="mb-3">
@@ -37,21 +37,9 @@
             <i class="fas fa-sign-in-alt"></i>
             Sign In to Dashboard
         </button>
+
+        <div class="divider mb-2">
+            <span>You don't have an account? <a href="{{ url('signup') }}" class="text-decoration-none fw-semibold">Sign Up</a></span>
+        </div>
     </form>
-
-    <div class="divider">
-        <span>I have a customer account</span>
-    </div>
-
-    <!-- Customer Links -->
-    <div class="customer-links">
-        <a href="{{ url('signin') }}" class="customer-link">
-            <i class="fas fa-user fa-sm"></i>
-            Customer Signin
-        </a>
-        <a href="{{ url('signup') }}" class="customer-link">
-            <i class="fas fa-user-plus fa-sm"></i>
-            Customer Signup
-        </a>
-    </div>
 @endsection

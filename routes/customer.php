@@ -14,6 +14,10 @@ use App\Http\Controllers\Customer\DashboardController;
 |
 */
 
+// Signin or SignUp Routes
+Route::view('signin','auth.signin');
+Route::view('signup','auth.signup');
+
 Route::middleware(['auth', 'role:customer'])->prefix('portal')->name('customer.')->group(function () {
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
 });
