@@ -13,10 +13,12 @@
                         <thead>
                             <th>SL</th>
                             <th>Avatar</th>
+                            <th>Role Name</th>
                             <th>Full Name</th>
                             <th>Email</th>
                             <th>Phone No.</th>
-                            <th>Role Name</th>
+                            <th>Register Date</th>
+                            <th>Updated Date</th>
                             <th class="text-end">Action</th>
                         </thead>
                         <tbody>
@@ -24,10 +26,12 @@
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{!! table_image($customer->avatar, $customer->name) !!}</td>
+                                <td><span class="badge badge-sm bg-success rounded-0 shadow-none">{{ ucfirst(CUSTOMER_ROLE) }}</span></td>
                                 <td>{{ $customer->full_name }}</td>
                                 <td>{{ $customer->email }}</td>
                                 <td>{{ $customer->phone_number }}</td>
-                                <td>Customer</td>
+                                <td>{{ date_formated($customer->created_at) }}</td>
+                                <td>{{ date_formated($customer->updated_at) }}</td>
                                 <td>
                                     <div class="text-end">
                                         <a href="{{ route('app.customers.edit', $customer->id) }}" class="btn-style btn-edit"><i class="fas fa-edit fa-sm"></i></a>
@@ -41,7 +45,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="7" class="text-center text-danger">Customer records empty!</td>
+                                <td colspan="9" class="text-center text-danger">Customer records empty!</td>
                             </tr>
                             @endforelse
                         </tbody>

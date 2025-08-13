@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Services\CustomerService;
 use Illuminate\Http\Request;
+use App\Services\CustomerService;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomerRequest;
 
 class CustomerController extends Controller
 {
@@ -42,8 +43,16 @@ class CustomerController extends Controller
     {
         $edit = $this->service->find($id);
 
-        $this->setPageTitle('Create Customer', 'Create Customer');
-        return view('admin.customer.update-or-create', ['edit'=>$edit]);
+        $this->setPageTitle('Edit Customer', 'Edit Customer');
+        return view('admin.customer.edit', ['edit'=>$edit]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(CustomerRequest $request, string $id)
+    {
+        return $this->service->updateData($request, $id);
     }
 
     /**

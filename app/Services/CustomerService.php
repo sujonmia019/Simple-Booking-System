@@ -21,6 +21,10 @@ class CustomerService {
         return $this->customerRepo->edit($id);
     }
 
+    public function updateData($data, int $id){
+        return $this->customerRepo->udpate($data ,$id);
+    }
+
     public function deleteData(int $id){
         return $this->customerRepo->delete($id);
     }

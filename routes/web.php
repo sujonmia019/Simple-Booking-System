@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\CustomerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 
 /*
@@ -30,7 +31,10 @@ Route::middleware(['auth', 'role:admin'])->name('app.')->group(function () {
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     // Customer Routes
-    Route::resource('customers', CustomerController::class)->except('update','create','store');
+    Route::resource('customers', CustomerController::class)->except('create','store');
+
+    // Service Routes
+    Route::resource('services', ServiceController::class)->except('show');
 
 });
 

@@ -1,8 +1,21 @@
 <?php
 
+use Illuminate\Support\Facades\Storage;
+
+define('AVATAR_PATH', 'avatar');
 define('ADMIN_ROLE', 'admin');
 define('CUSTOMER_ROLE', 'customer');
 define('TABLE_PAGE_LENGTH', 15);
+define('ACTIVE_STATUS', 1);
+define('INACTIVE_STATUS', 1);
+define('STATUS', [
+    1 => 'Active',
+    2 => 'Inactive'
+]);
+define('STATUS_LABEL', [
+    1 => '<span class="badge badge-sm bg-success rounded-0">Active</span>',
+    2 => '<span class="badge badge-sm bg-danger rounded-0">Inactive</span>'
+]);
 
 if (!function_exists('table_image')) {
     function table_image($path, $name, $class = null, $style = null){
@@ -20,6 +33,12 @@ if(!function_exists('user_image')){
 
 if (!function_exists('file_path')) {
     function file_path($path, $disk = 'public'){
-        return asset($path);
+        return Storage::disk($disk)->url($path);
+    }
+}
+
+if(!function_exists('date_formated')){
+    function date_formated($date, $format = 'Y-m-d h:i A'){
+        return date($format, strtotime($date));
     }
 }

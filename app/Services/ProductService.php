@@ -13,4 +13,16 @@ class ProductService {
         $this->productRepo = $productRepository;
     }
 
+    public function all(){
+        return $this->productRepo->getData();
+    }
+
+    public function find(int $id){
+        return $this->productRepo->edit($id);
+    }
+
+    public function deleteData(int $id){
+        return $this->productRepo->delete($id);
+    }
+
 }

@@ -387,6 +387,14 @@ table td {
     background: rgba(52, 152, 219,1.0);
 }
 
+.form-label {
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 2px;
+    display: block;
+    font-size: 0.85rem;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 992px) {
     #sidebar {
