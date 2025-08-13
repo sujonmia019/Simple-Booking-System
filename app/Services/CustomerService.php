@@ -13,4 +13,16 @@ class CustomerService {
         $this->customerRepo = $customerRepository;
     }
 
+    public function all(){
+        return $this->customerRepo->getData();
+    }
+
+    public function find(int $id){
+        return $this->customerRepo->edit($id);
+    }
+
+    public function deleteData(int $id){
+        return $this->customerRepo->delete($id);
+    }
+
 }
