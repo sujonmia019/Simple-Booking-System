@@ -14,9 +14,9 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Admin User
-        User::updateOrCreate(['email'=>'admin@gmail.com'],['role_name'=>'admin','name'=>'Admin','password'=>12345678]);
+        User::updateOrCreate(['email'=>'admin@gmail.com'],['role_name'=>'admin','full_name'=>'Admin','phone_number'=>'01743776488','password'=>12345678]);
 
         // Customer User
-        User::updateOrCreate(['email'=>'customer@gmail.com'],['role_name'=>'customer','name'=>'Customer','password'=>12345678]);
+        User::updateOrCreate(['email'=>'customer@gmail.com'],['role_name'=>'customer','full_name'=>'Customer','phone_number'=>'01602603147','password'=>12345678]);
     }
 }

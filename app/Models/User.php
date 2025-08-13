@@ -19,9 +19,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'role_name',
-        'name',
+        'full_name',
         'email',
+        'phone_number',
         'password',
+        'avatar'
     ];
 
     /**
@@ -43,6 +45,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Scope a query to only include
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeRole($query, $roleName)
+    {
+        return $query->where('role_name', $roleName);
+    }
 
     public function bookings(){
         return $this->hasMany(Booking::class, 'user_id');

@@ -10,7 +10,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function setPageTitle(string $title, string $siteTitle = null){
-        return view()->share(['title'=>$title, 'siteTitle'=>$siteTitle]);
+    public function setPageTitle(string $title, string $siteTitle = null, $subTitle = null){
+        return view()->share(['title'=>$title, 'siteTitle'=>$siteTitle, 'subTitle'=>$subTitle]);
     }
 }

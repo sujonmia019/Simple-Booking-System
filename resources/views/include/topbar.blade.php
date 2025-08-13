@@ -1,13 +1,15 @@
 <div id="topbar">
     <div>
-        <h2 class="mb-0">Dashboard</h2>
-        <small>Welcome back, manage your service bookings</small>
+        <h2 class="mb-0">{{ $title }}</h2>
+        @if ($subTitle)
+        <small>{{ $subTitle }}</small>
+        @endif
     </div>
     <div>
-        <div class="admin-info">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin Profile" />
+        <div class="admin-info pe-0">
+            <img src="{{ user_image() }}" alt="Admin Profile" />
             <div class="admin-text">
-                <strong>{{ auth()->user()->name }}</strong>
+                <strong>{{ auth()->user()->full_name }}</strong>
                 <small>{{ auth()->user()->role_name == ADMIN_ROLE ? 'Administrator' : 'Customer' }}</small>
             </div>
         </div>

@@ -15,7 +15,7 @@ class DashboardController extends Controller
      */
     public function dashboard()
     {
-        $this->setPageTitle('Dashboard', 'Dashboard');
+        $this->setPageTitle('Dashboard', 'Dashboard', 'Welcome back, manage your service bookings');
         return view('home');
     }
 }

@@ -5,7 +5,10 @@
         </div>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="#" class="nav-link active"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+                <a href="{{ url('/') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('app.customers.index') }}" class="nav-link {{ request()->is('customers') ? 'active' : '' }}"><i class="fa-solid fa-users"></i> Customers</a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link"><i class="fa-solid fa-wrench"></i> Services</a>

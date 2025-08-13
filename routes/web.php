@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CustomerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
@@ -16,16 +17,21 @@ use App\Http\Controllers\Admin\DashboardController;
 */
 
 Auth::routes([
-    'password.request',
-    'password.confirm',
-    'password.email',
-    'password.reset',
-    'password.update'
+    'register',         // 404 Disabled
+    'password.request', // 404 Disabled
+    'password.confirm', // 404 Disabled
+    'password.email', // 404 Disabled
+    'password.reset', // 404 Disabled
+    'password.update'  // 404 Disabled
 ]);
 
 // Admin Group Routes
-Route::middleware(['auth', 'role:admin'])->name('admin.')->group(function () {
+Route::middleware(['auth', 'role:admin'])->name('app.')->group(function () {
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+    // Customer Routes
+    Route::resource('customers', CustomerController::class)->except('update','create','store');
+
 });
 
 
