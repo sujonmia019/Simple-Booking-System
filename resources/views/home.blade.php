@@ -1,5 +1,8 @@
 @extends('layouts.app')
+@section('site_title', $siteTitle)
+@push('styles')
 
+@endpush
 @section('content')
 <div class="row my-4 g-3">
     <div class="col-sm-6 col-md-3">
@@ -113,3 +116,6 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+
+@endpush

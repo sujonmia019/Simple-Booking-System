@@ -15,6 +15,7 @@ class DashboardController extends Controller
      */
     public function dashboard()
     {
+        $this->setPageTitle('Dashboard', 'Dashboard');
         return view('home');
     }
 }

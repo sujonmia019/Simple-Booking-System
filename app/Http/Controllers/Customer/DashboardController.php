@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function dashboard(){
-        return auth()->user()->role_name;
+        $this->setPageTitle('Dashboard', 'Dashboard');
+        return view('customer.dashboard');
     }
 }

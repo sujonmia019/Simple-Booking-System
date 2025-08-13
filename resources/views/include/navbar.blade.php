@@ -1,9 +1,7 @@
 <nav id="sidebar" class="col-lg-2 d-lg-block d-none position-relative">
     <div class="px-3">
         <div class="mb-4 d-flex align-items-center gap-2">
-            <div class="fs-4 fw-bold text-primary"><i class="fa-solid fa-calendar-check"></i> BookingPro
-            </div>
-            <small class="text-muted">Admin Panel</small>
+            <div class="fs-4 fw-bold text-primary"><i class="fa-solid fa-calendar-check"></i> Booking</div>
         </div>
         <ul class="nav flex-column">
             <li class="nav-item">
@@ -17,11 +15,10 @@
             </li>
         </ul>
     </div>
-    <div class="admin-info mt-auto">
-        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Admin Profile" />
-        <div class="admin-text">
-            <strong>John Admin</strong>
-            <small>Administrator</small>
-        </div>
+    <div class="mt-auto position-absolute bottom-0 w-100 px-3 mb-3">
+        <button type="button" class="logout-btn"><i class="fas fa-sign-out"></i> Logout</button>
+        <form action="{{ route('logout') }}" method="POST" class="d-none" id="logout-form">
+            @csrf
+        </form>
     </div>
 </nav>

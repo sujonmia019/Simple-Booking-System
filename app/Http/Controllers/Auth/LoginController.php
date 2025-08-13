@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -174,6 +175,9 @@ class LoginController extends Controller
                 break;
         }
 
+        // flash msg
+        Session::flash('success', 'Welcome! Login Success');
+
         return redirect($redirectUrl);
     }
 
@@ -216,13 +220,7 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        if ($response = $this->loggedOut($request)) {
-            return $response;
-        }
-
-        return $request->wantsJson()
-            ? new JsonResponse([], 204)
-            : redirect('/');
+        return  redirect('/login')->with('success', 'Logout Success');
     }
 
     /**
@@ -233,7 +231,7 @@ class LoginController extends Controller
      */
     protected function loggedOut(Request $request)
     {
-        //
+        return redirect('/login')->with('success', 'Logout Successful');
     }
 
     /**

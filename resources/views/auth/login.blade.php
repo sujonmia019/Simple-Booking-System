@@ -4,24 +4,31 @@
     <!-- Login Header -->
     @include('auth.include.topbar', ['content'=>'Sign in to access your administrative dashboard'])
 
-    <form id="adminLoginForm">
+    <form id="adminLoginForm" method="POST" action="{{ route('login') }}">
+        @csrf
         <div class="mb-3">
             <label class="form-label required">Email</label>
             <div class="input-group">
                 <i class="fas fa-envelope input-icon"></i>
-                <input type="email" class="form-control form-control-sm shadow-none" placeholder="Enter your email" required>
+                <input type="email" class="form-control form-control-sm shadow-none" name="email" placeholder="Enter your email" required>
             </div>
+            @error('email')
+                <small class="text-danger d-block">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="mb-3">
             <label class="form-label required">Password</label>
             <div class="input-group">
                 <i class="fas fa-lock input-icon"></i>
-                <input type="password" class="form-control form-control-sm shadow-none" placeholder="Enter your password" required>
+                <input type="password" class="form-control form-control-sm shadow-none" name="password" id="password" placeholder="Enter your password" required>
                 <button type="button" class="password-toggle" onclick="togglePassword(this)">
                     <i class="fas fa-eye"></i>
                 </button>
-            </div>
+            </div>      
+            @error('password')
+                <small class="text-danger d-block">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-options">
