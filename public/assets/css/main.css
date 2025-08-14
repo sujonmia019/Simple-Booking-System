@@ -150,13 +150,13 @@ body {
     font-weight: 600;
     font-size: 0.95rem;
     margin-bottom: 0.25rem;
-    color: var(--text-muted);
+    color: var(--light-bg);
 }
 
 .stat-card .value {
     font-weight: 700;
     font-size: 1.8rem;
-    color: var(--text-dark);
+    color: var(--light-bg);
     line-height: 1.1;
 }
 

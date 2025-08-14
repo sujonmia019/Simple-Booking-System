@@ -1,30 +1,39 @@
 @extends('layouts.app')
 @section('site_title', $siteTitle)
 @push('styles')
-
+<style>
+    .bg-cyan    {background-color: #17a2b8 !important;}
+    .bg-teal    {background-color: #20c997 !important;}
+    .bg-indigo  {background-color: #6610f2 !important;}
+    .bg-dark    {background-color: #343a40 !important;}
+    .bg-blue    {background-color: #007bff !important;}
+    .bg-pink    {background-color: #e83e8c !important;}
+    .bg-orange  {background-color: #fd7e14 !important;}
+    .bg-purple  {background-color: #6f42c1 !important;}
+</style>
 @endpush
 @section('content')
 <div class="row mt-4">
     <div class="col-sm-6 col-md-3">
-        <div class="stat-card text-center">
+        <div class="stat-card text-center bg-cyan">
             <div class="title">Total Services</div>
             <div class="value">{{ $servicesCounts->total }}</div>
         </div>
     </div>
     <div class="col-sm-6 col-md-3">
-        <div class="stat-card text-center">
+        <div class="stat-card text-center bg-teal">
             <div class="title">Active Services</div>
             <div class="value">{{ $servicesCounts->active }}</div>
         </div>
     </div>
     <div class="col-sm-6 col-md-3">
-        <div class="stat-card text-center">
+        <div class="stat-card text-center bg-indigo">
             <div class="title">Total Bookings</div>
             <div class="value">{{ $bookingsCounts->total }}</div>
         </div>
     </div>
     <div class="col-sm-6 col-md-3">
-        <div class="stat-card text-center">
+        <div class="stat-card text-center bg-dark">
             <div class="title">Pending Bookings</div>
             <div class="value">{{ $bookingsCounts->pending }}</div>
         </div>
@@ -33,25 +42,25 @@
 
 <div class="row mt-4">
     <div class="col-sm-6 col-md-3">
-        <div class="stat-card text-center">
+        <div class="stat-card text-center bg-blue">
             <div class="title">Confirmed Bookings</div>
             <div class="value">{{ $bookingsCounts->confirmed }}</div>
         </div>
     </div>
     <div class="col-sm-6 col-md-3">
-        <div class="stat-card text-center">
+        <div class="stat-card text-center bg-pink">
             <div class="title">Cancelled Bookings</div>
             <div class="value">{{ $bookingsCounts->cancelled }}</div>
         </div>
     </div>
     <div class="col-sm-6 col-md-3">
-        <div class="stat-card text-center">
+        <div class="stat-card text-center bg-orange">
             <div class="title">Total Revenue</div>
             <div class="value">{{ $totalRevenue }}</div>
         </div>
     </div>
     <div class="col-sm-6 col-md-3">
-        <div class="stat-card text-center">
+        <div class="stat-card text-center bg-purple">
             <div class="title">Total Customers</div>
             <div class="value">{{ $totalCustomers }}</div>
         </div>
