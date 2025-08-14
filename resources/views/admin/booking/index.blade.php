@@ -74,7 +74,7 @@
                                    </div>
                                 </td>
                                 <td>{{ $booking->service->name }}</td>
-                                <td>{{ $booking->service->price }}</td>
+                                <td>{{ config('app.currency') }}{{ $booking->service->price }}</td>
                                 <td>{{ date_formated($booking->booking_date, 'Y-m-d') }}</td>
                             </tr>
                             @empty

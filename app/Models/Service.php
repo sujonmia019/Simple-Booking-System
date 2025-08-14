@@ -23,6 +23,22 @@ class Service extends Model
      */
     protected $fillable = ['name','description','price','status'];
 
+    /**
+     * Local scope (status)
+     */
+    public function scopeStatus($query, $status)
+    {
+        return $query->where('status', $status);
+    }
+
+    /**
+     * Local scope (sortBy) DESC
+     */
+    public function scopeSortBy($query, $sortBy = 'DESC', $column = 'created_at')
+    {
+        return $query->orderBy($column, $sortBy);
+    }
+
     public function bookings(){
         return $this->hasMany(Booking::class, 'service_id');
     }

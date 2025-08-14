@@ -23,6 +23,21 @@ class Booking extends Model
      */
     protected $fillable = ['user_id','service_id','booking_date','status'];
 
+    /**
+     * Local scope (sortBy) DESC
+     */
+    public function scopeAuthBook($query)
+    {
+        return $query->where('user_id', auth()->id());
+    }
+
+    /**
+     * Local scope (sortBy) DESC
+     */
+    public function scopeSortBy($query, $sortBy = 'DESC', $column = 'booking_date')
+    {
+        return $query->orderBy($column, $sortBy);
+    }
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id');

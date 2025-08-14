@@ -16,7 +16,13 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, $role): Response
     {
         if (!auth()->user() || auth()->user()->role_name !== $role) {
-            abort(403, 'Unauthorized Access');
+            if(auth()->user()->role_name == CUSTOMER_ROLE){
+                return redirect('portal');
+            }else if(auth()->user()->role_name == ADMIN_ROLE){
+                return redirect('/');
+            }else{
+                abort(403, 'Unauthorized Access');
+            }
         }
 
         return $next($request);

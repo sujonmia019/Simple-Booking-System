@@ -21,6 +21,11 @@ define('BOOKING_STATUS', [
     2 => 'Confirmed',
     3 => 'Cancelled'
 ]);
+define('BOOKING_STATUS_LABEL', [
+    1 => '<span class="badge bg-warning text-dark fw-normal">Pending</span>',
+    2 => '<span class="badge bg-success fw-normal">Confirmed</span>',
+    3 => '<span class="badge bg-danger fw-normal">Cancelled</span>'
+]);
 define('BOOKING_STATUS_COLORS', [
     1 => '#facc15', // Pending
     2 => '#22c55e', // Confirmed

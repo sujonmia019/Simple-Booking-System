@@ -113,7 +113,7 @@
             datasets: [{
                 label: 'Bookings per Service',
                 data: serviceData,
-                backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                backgroundColor: 'rgba(54, 162, 235, 0.7)'
             }]
         },
         options: {

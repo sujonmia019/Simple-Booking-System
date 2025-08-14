@@ -26,7 +26,7 @@
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $service->name }}</td>
                                 <td>{{ $service->description }}</td>
-                                <td>{{ $service->price }}</td>
+                                <td>{{ config('app.currency') }}{{ $service->price }}</td>
                                 <td>{!! STATUS_LABEL[$service->status] !!}</td>
                                 <td>{{ date_formated($service->created_at) }}</td>
                                 <td>{{ date_formated($service->updated_at) }}</td>

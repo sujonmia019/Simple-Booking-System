@@ -4,7 +4,7 @@
     <!-- Login Header -->
     @include('auth.include.topbar', ['content'=>'Sign in to access your customer dashboard'])
 
-    <form id="adminLoginForm">
+    <form id="adminLoginForm" method="POST" action="{{ route('login') }}">
         @csrf
         <div class="mb-3">
             <label class="form-label required">Email</label>

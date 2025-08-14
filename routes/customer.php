@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Customer\AuthController;
+use App\Http\Controllers\Customer\BookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Customer\DashboardController;
 
@@ -20,4 +22,7 @@ Route::view('signup','auth.signup');
 
 Route::middleware(['auth', 'role:customer'])->prefix('portal')->name('customer.')->group(function () {
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+    // Booking Routes
+    Route::post('book-now', [BookingController::class, 'bookNow'])->name('book-now');
 });
