@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BookingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ServiceController;
@@ -35,6 +36,12 @@ Route::middleware(['auth', 'role:admin'])->name('app.')->group(function () {
 
     // Service Routes
     Route::resource('services', ServiceController::class)->except('show');
+
+    // Booking Routes
+    Route::prefix('bookings')->name('bookings.')->group(function(){
+        Route::get('/', [BookingController::class, 'index'])->name('index');
+        Route::post('status-changes', [BookingController::class, 'stautsChange'])->name('status-changes');
+    });
 
 });
 

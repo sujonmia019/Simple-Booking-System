@@ -16,6 +16,16 @@ define('STATUS_LABEL', [
     1 => '<span class="badge badge-sm bg-success rounded-0">Active</span>',
     2 => '<span class="badge badge-sm bg-danger rounded-0">Inactive</span>'
 ]);
+define('BOOKING_STATUS', [
+    1 => 'Pending',
+    2 => 'Confirmed',
+    3 => 'Cancelled'
+]);
+define('BOOKING_STATUS_COLORS', [
+    1 => '#facc15', // Pending
+    2 => '#22c55e', // Confirmed
+    3 => '#ef4444', // Cancelled
+]);
 
 if (!function_exists('table_image')) {
     function table_image($path, $name, $class = null, $style = null){
@@ -40,5 +50,18 @@ if (!function_exists('file_path')) {
 if(!function_exists('date_formated')){
     function date_formated($date, $format = 'Y-m-d h:i A'){
         return date($format, strtotime($date));
+    }
+}
+
+if (!function_exists('getStatusColor')) {
+    function getStatusColor($status)
+    {
+        return match ($status) {
+            \App\Models\Booking::STATUS_PENDING   => '#facc15', // yellow
+            \App\Models\Booking::STATUS_CONFIRMED => '#22c55e', // green
+            \App\Models\Booking::STATUS_COMPLETED => '#3b82f6', // blue
+            \App\Models\Booking::STATUS_CANCELED  => '#ef4444', // red
+            default => '#ddd',
+        };
     }
 }
