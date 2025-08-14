@@ -21,7 +21,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light mb-5">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">BookIt</a>
+            <a class="navbar-brand" href="{{ route('app.customer.dashboard') }}"><i class="fs-4 fw-bold fa-solid fa-calendar-check"></i> BookIt</a>
             <div class="d-flex">
                 <button class="btn btn-logout btn-sm logout-btn"><i class="fas fa-sign-out"></i> Logout</button>
                 <form action="{{ route('logout') }}" method="POST" class="d-none" id="logout-form">

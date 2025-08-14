@@ -1,7 +1,7 @@
 <nav id="sidebar" class="col-lg-2 d-lg-block d-none position-relative">
     <div class="px-3">
         <div class="mb-4 d-flex align-items-center gap-2">
-            <div class="fs-4 fw-bold text-primary"><i class="fa-solid fa-calendar-check"></i> Booking</div>
+            <div class="fs-5 fw-bold text-primary"><i class="fa-solid fa-calendar-check"></i> BookIt</div>
         </div>
         <ul class="nav flex-column">
             <li class="nav-item">

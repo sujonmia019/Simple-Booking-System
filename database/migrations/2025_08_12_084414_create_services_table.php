@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->decimal('price', 10, 2);
-            $table->enum('status', [1,2])->default(1)->comment('1 = Active, 2 = Inactive');
+            $table->enum('status', [ACTIVE_STATUS,INACTIVE_STATUS])->default(1)->comment('1 = Active, 2 = Inactive');
             $table->timestamps();
         });
     }

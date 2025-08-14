@@ -19,7 +19,6 @@ use App\Http\Controllers\Admin\DashboardController;
 */
 
 Auth::routes([
-    'register',         // 404 Disabled
     'password.request', // 404 Disabled
     'password.confirm', // 404 Disabled
     'password.email', // 404 Disabled

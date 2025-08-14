@@ -13,7 +13,6 @@
                         <thead>
                             <th>SL</th>
                             <th>Avatar</th>
-                            <th>Role Name</th>
                             <th>Full Name</th>
                             <th>Email</th>
                             <th>Phone No.</th>
@@ -26,7 +25,6 @@
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{!! table_image($customer->avatar, $customer->name) !!}</td>
-                                <td><span class="badge badge-sm bg-success rounded-0 shadow-none">{{ ucfirst(CUSTOMER_ROLE) }}</span></td>
                                 <td>{{ $customer->full_name }}</td>
                                 <td>{{ $customer->email }}</td>
                                 <td>{{ $customer->phone_number }}</td>
