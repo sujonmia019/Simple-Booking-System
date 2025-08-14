@@ -17,6 +17,10 @@ class ProductService {
         return $this->productRepo->getData();
     }
 
+    public function storeOrUpdate($data){
+        return $this->productRepo->storeOrUpdateData($data);
+    }
+
     public function find(int $id){
         return $this->productRepo->edit($id);
     }

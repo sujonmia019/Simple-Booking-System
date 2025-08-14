@@ -13,7 +13,16 @@ class ProductRepository implements ProductInterface {
     }
 
     public function storeOrUpdateData($request){
+        $collection = collect($request->validated());
+        $created_at = $updated_at = now();
+        $collection = $request->update_id ? $collection->merge(['updated_at'=>$updated_at]) : $collection->merge(['created_at'=>$created_at]);
+        $result = Service::updateOrCreate(['id'=>$request->update_id], $collection->all());
+        if($result){
+            $msg = $request->update_id ? 'Service updated successfull.' : 'Service saved successfull.';
+            return redirect()->route('app.services.index')->with('success', $msg);
+        }
 
+        return back()->with('error','Something went wrong!');
     }
 
     public function edit(int $id){

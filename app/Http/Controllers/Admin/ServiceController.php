@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Services\ProductService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ServiceRequest;
 
 class ServiceController extends Controller
 {
@@ -31,15 +33,16 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        $this->setPageTitle('Create Service', 'Create Service');
+        return view('admin.service.update-or-create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ServiceRequest $request)
     {
-        //
+        return $this->service->storeOrUpdate($request);
     }
 
     /**
@@ -49,7 +52,7 @@ class ServiceController extends Controller
     {
         $edit = $this->service->find($id);
 
-        $this->setPageTitle('Create Service', 'Create Service');
+        $this->setPageTitle('Edit Service', 'Edit Service');
         return view('admin.service.update-or-create', ['edit'=>$edit]);
     }
 

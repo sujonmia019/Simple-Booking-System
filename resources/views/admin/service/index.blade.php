@@ -53,6 +53,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 @push('scripts')
     <script>
@@ -84,5 +85,7 @@
                 searchPlaceholder: "Type to filter..."
             }
         });
+
+
     </script>
 @endpush

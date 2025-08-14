@@ -11,7 +11,7 @@
                 <a href="{{ route('app.customers.index') }}" class="nav-link {{ request()->is('customers') ? 'active' : '' }}"><i class="fa-solid fa-users"></i> Customers</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('app.services.index') }}" class="nav-link {{ request()->is('services') ? 'active' : '' }}"><i class="fa-solid fa-wrench"></i> Services</a>
+                <a href="{{ route('app.services.index') }}" class="nav-link {{ request()->is('services*') ? 'active' : '' }}"><i class="fa-solid fa-wrench"></i> Services</a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link"><i class="fa-solid fa-book"></i> Bookings</a>
