@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Auth\AuthController;
+use App\Http\Controllers\API\Customer\ServiceController;
+use App\Http\Controllers\API\Customer\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,12 @@ use App\Http\Controllers\API\Auth\AuthController;
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->group(function() {
+Route::prefix('v1')->middleware(['auth:sanctum'])->group(function() {
+    // Customer Service List Route
+    Route::get('services', [ServiceController::class, 'serviceList']);
+    // Customer New Booking Route
+    Route::post('bookings', [BookingController::class, 'addBooking']);
+    // Customer Booking List Route
+    Route::get('bookings', [BookingController::class, 'bookingList']);
 
 });

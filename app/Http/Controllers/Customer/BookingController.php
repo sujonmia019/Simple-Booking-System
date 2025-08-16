@@ -15,10 +15,10 @@ class BookingController extends Controller
             $user_id = auth()->id();
             $result = Booking::create(['user_id'=>$user_id,'service_id'=>$request->service_id,'booking_date'=>$request->booking_date]);
             if($result){
-                return response()->json(['status'=>'success','message'=>'Your booking has been confirmed successfully']);
+                return $this->responseJson('success','Your booking has been confirmed successfully');
             }
 
-            return response()->json(['status'=>'error','message'=>'Please try again later!']);
+            return $this->responseJson('error','Please try again later!', 404);
         }
     }
 

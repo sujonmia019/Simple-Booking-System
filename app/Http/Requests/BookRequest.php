@@ -35,7 +35,16 @@ class BookRequest extends FormRequest
     {
         return [
             'service_id'   => ['required','integer'],
-            'booking_date' => ['required','date','date_format:Y-m-d']
+            'booking_date' => ['required','date','after_or_equal:today','date_format:Y-m-d']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'service_id.required' => 'The service name field is required.',
+            'service_id.integer'  => 'The service field must be a integer.',
+            'booking_date.after_or_equal' => 'The Booking date cannot be in the past.'
         ];
     }
 }
