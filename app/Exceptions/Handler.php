@@ -32,7 +32,7 @@ class Handler extends ExceptionHandler
     protected function unauthenticated($request, AuthenticationException $exception)
     {
 
-        if ($request->is('api/*') || $request->expectsJson()) {
+        if ($request->is('api/*')) {
             return response()->json([
                 'status'  => false,
                 'message' => 'Unauthorized: Token is missing or invalid'
