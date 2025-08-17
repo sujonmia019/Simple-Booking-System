@@ -7,11 +7,32 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BookingResource;
+use OpenApi\Annotations as OA;
 
+/**
+ * @OA\Tag(
+ *     name="Customer",
+ *     description="Customer Booking endpoints"
+ * )
+ */
 class BookingController extends Controller
 {
     /**
-     * New Booking
+     * @OA\Post(
+     *     path="/api/v1/customer/bookings",
+     *     tags={"Customer"},
+     *     summary="Add a new booking",
+     *     security={{"sanctum":{}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"service_id","booking_date"},
+     *             @OA\Property(property="service_id", type="integer"),
+     *             @OA\Property(property="booking_date", type="string", format="date")
+     *         )
+     *     ),
+     *     @OA\Response(response=201, description="Booking created successfully")
+     * )
      */
     public function addBooking(BookRequest $request){
         try {
@@ -27,7 +48,13 @@ class BookingController extends Controller
     }
 
     /**
-     * Booking List
+     * @OA\Get(
+     *     path="/api/v1/customer/bookings",
+     *     tags={"Customer"},
+     *     summary="List customer's bookings",
+     *     security={{"sanctum":{}}},
+     *     @OA\Response(response=200, description="List of bookings")
+     * )
      */
     public function bookingList(){
         $bookings = Booking::with('service')->authBook()->sortBy('DESC')->get();
