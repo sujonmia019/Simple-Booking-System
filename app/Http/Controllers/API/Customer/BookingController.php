@@ -32,6 +32,6 @@ class BookingController extends Controller
     public function bookingList(){
         $bookings = Booking::with('service')->authBook()->sortBy('DESC')->get();
 
-        return $this->responseJson('success','bookings retrieved successfully',BookingResource::collection($bookings));
+        return $this->responseJson('success','Bookings retrieved successfully',BookingResource::collection($bookings));
     }
 }

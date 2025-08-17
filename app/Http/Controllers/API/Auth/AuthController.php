@@ -34,15 +34,10 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $user = User::where('email', $request->email)->role(CUSTOMER_ROLE)->first();
+        $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return $this->responseJson(
-                'error',
-                'Invalid credentials',
-                null,
-                401
-            );
+            return $this->responseJson('error','Invalid credentials',null,401);
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
