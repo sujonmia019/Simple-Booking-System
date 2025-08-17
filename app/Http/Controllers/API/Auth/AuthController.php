@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\API\LoginRequest;
@@ -51,6 +52,11 @@ class AuthController extends Controller
                 'token_type'   => 'Bearer',
             ]
         );
+    }
+
+    public function logout(Request $request){
+        $request->user()->currentAccessToken()->delete();
+        return $this->responseJson('success','Logged out');
     }
 
 }

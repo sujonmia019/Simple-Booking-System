@@ -22,6 +22,9 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
 Route::prefix('v1')->middleware(['auth:sanctum'])->group(function() {
+    // Logout Route
+    Route::post('logout', [AuthController::class, 'logout']);
+
     // Customer Routes
     Route::prefix('customer')->group(function(){
         // Service List
