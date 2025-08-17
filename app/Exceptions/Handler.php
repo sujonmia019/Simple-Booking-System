@@ -31,9 +31,14 @@ class Handler extends ExceptionHandler
 
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        return response()->json([
-            'status'  => false,
-            'message' => 'Unauthorized: Token is missing or invalid'
-        ], 401);
+
+        if ($request->is('api/*') || $request->expectsJson()) {
+            return response()->json([
+                'status'  => false,
+                'message' => 'Unauthorized: Token is missing or invalid'
+            ], 401);
+        }
+
+        return redirect()->guest(route('login'));
     }
 }
