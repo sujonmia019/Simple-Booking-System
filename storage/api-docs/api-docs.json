@@ -12,10 +12,6 @@
         {
             "url": "http://localhost:8000/api",
             "description": "Local API server"
-        },
-        {
-            "url": "http://localhost:8000/api",
-            "description": "Live API server"
         }
     ],
     "paths": {
