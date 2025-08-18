@@ -117,7 +117,7 @@ Download or browser login and install Postman if you don’t already have it.
 |--------|-----------------|--------------------------|
 | POST   | `/api/register` | Register a new customer  |
 | POST   | `/api/login`    | Login (Customer/Admin)   |
-| POST   | `/api/v1/logout`| Logout (Customer/Admin)   |
+| POST   | `/api/v1/logout`| Logout (Customer/Admin)  |
 
 ---
 
@@ -136,5 +136,49 @@ Download or browser login and install Postman if you don’t already have it.
 | POST   | `/api/v1/admin/services`        | Create a new service      |
 | PUT    | `/api/v1/admin/services/{id}`   | Update service details    |
 | DELETE | `/api/v1/admin/services/{id}`   | Delete a service          |
-| GET    | `/api/v1/admin/bookings`  | List all customer bookings|
+| GET    | `/api/v1/admin/bookings`        | List all customer bookings|
 
+## Screenshots
+
+#### Admin GUI
+
+- **1. Login**
+<img src="https://booking.radiantdntl.com/readme/admin-login-1.png" width="100%">
+
+- **2. Dashboard**
+<img src="https://booking.radiantdntl.com/readme/admin-dashboard-2.png" width="100%">
+
+- **3. List of Customer**
+<img src="https://booking.radiantdntl.com/readme/admin-customer-list-3.png" width="100%">
+
+- **4. Edit a Customer**
+<img src="https://booking.radiantdntl.com/readme/customer-edit-4.png" width="100%">
+
+- **5. List of Service**
+<img src="https://booking.radiantdntl.com/readme/service-list-5.png" width="100%">
+
+- **6. Create a Service**
+<img src="https://booking.radiantdntl.com/readme/service-create-6.png" width="100%">
+
+- **7. Edit a Service**
+<img src="https://booking.radiantdntl.com/readme/edit-service-7.png" width="100%">
+
+- **8. List of Service Booking**
+<img src="https://booking.radiantdntl.com/readme/booking-list-8.png" width="100%">
+
+- **9. Change a Booking Status**
+<img src="https://booking.radiantdntl.com/readme/change-booking-status-9.png" width="100%">
+
+#### Customer GUI
+
+- **1. Login**
+<img src="https://booking.radiantdntl.com/readme/customer-login-1.png" width="100%">
+
+- **2. Register**
+<img src="https://booking.radiantdntl.com/readme/customer-register-2.png" width="100%">
+
+- **3. Customer Portal**
+<img src="https://booking.radiantdntl.com/readme/customer-portal-3.png" width="100%">
+
+- **4. Service Book Now**
+<img src="https://booking.radiantdntl.com/readme/create%20booking%204.png" width="100%">
