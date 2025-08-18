@@ -1,23 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
+namespace App\Http\Requests\API;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\API\FormRequest;
 
-class BookRequest extends FormRequest
+class BookingRequest extends FormRequest
 {
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(
-            response()->json([
-                'status' => false,
-                'errors' => $validator->errors()
-            ])
-        );
-    }
-
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -42,8 +30,8 @@ class BookRequest extends FormRequest
     public function messages()
     {
         return [
-            'service_id.required' => 'The service name field is required.',
-            'service_id.integer'  => 'The service field must be a integer.',
+            'service_id.required'         => 'The service name field is required.',
+            'service_id.integer'          => 'The service field must be a integer.',
             'booking_date.after_or_equal' => 'The Booking date cannot be in the past.'
         ];
     }

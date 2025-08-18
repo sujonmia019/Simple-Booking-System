@@ -7,7 +7,7 @@ define('ADMIN_ROLE', 'admin');
 define('CUSTOMER_ROLE', 'customer');
 define('TABLE_PAGE_LENGTH', 15);
 define('ACTIVE_STATUS', 1);
-define('INACTIVE_STATUS', 1);
+define('INACTIVE_STATUS', 2);
 define('STATUS', [
     1 => 'Active',
     2 => 'Inactive'
