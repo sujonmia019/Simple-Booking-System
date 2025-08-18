@@ -105,7 +105,7 @@ This system allows **customers** to register, view services, and make bookings. 
     php artisan serve
 
 ## Database
-Database Design Schema <a href="" target="_blank">Click</a>
+Database Design Schema <a href="https://drawsql.app/teams/instructory/diagrams/simple-booking-system-database-schema" target="_blank">Click</a>
 
 #### Open Postman
 Download or browser login and install Postman if you don’t already have it.
