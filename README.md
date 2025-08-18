@@ -109,7 +109,7 @@ Database Design Schema <a href="https://drawsql.app/teams/instructory/diagrams/s
 
 #### Open Postman
 Download or browser login and install Postman if you don’t already have it.
-Postman collections <a href="https://api.postman.com/collections/31549912-8516ecd5-0f91-49eb-8c25-e74e54b5938b?access_key=PMAT-01K2YFZG3F6D9HH3MWMFETDRYJ" target="_blank">Click</a>
+Postman collection use for local server <a href="https://api.postman.com/collections/31549912-8516ecd5-0f91-49eb-8c25-e74e54b5938b?access_key=PMAT-01K2YFZG3F6D9HH3MWMFETDRYJ" target="_blank">Click</a>
 
 ## API Endpoints
 
