@@ -31,7 +31,7 @@ Route::middleware(['auth', 'role:admin'])->name('app.')->group(function () {
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     // Customer Routes
-    Route::resource('customers', CustomerController::class)->except('create','store');
+    Route::resource('customers', CustomerController::class)->except('create','store','show');
 
     // Service Routes
     Route::resource('services', ServiceController::class)->except('show');

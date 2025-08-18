@@ -9,13 +9,9 @@ This system allows **customers** to register, view services, and make bookings. 
 
 - [Features](#features)  
 - [Tech Stack](#tech-stack)  
-- [Installation & Setup](#installation--setup)  
-- [Database & Models](#database--models)  
+- [Installation & Setup](#installation--setup)
 - [API Endpoints](#api-endpoints)  
-- [Authentication](#authentication)  
-- [Sample Requests & Responses](#sample-requests--responses)  
-- [Screenshots](#screenshots)  
-- [License](#license)  
+- [Screenshots](#screenshots)   
 
 ---
 
@@ -68,17 +64,22 @@ This system allows **customers** to register, view services, and make bookings. 
     ```bash
     composer install
 
-4. Copy the .env.example file to .env
+4. Node js packase install
+
+    ```bash
+    npm install
+
+5. Copy the .env.example file to .env
 
     ```bash
     cp .env.example .env
 
-5. Generate the application key
+6. Generate the application key
 
     ```bash
     php artisan key:generate
 
-6. Set up your database connection in the .env file
+7. Set up your database connection in the .env file
 
     ```bash
     DB_CONNECTION=mysql
@@ -88,17 +89,52 @@ This system allows **customers** to register, view services, and make bookings. 
     DB_USERNAME=your_database_user
     DB_PASSWORD=your_database_password
 
-7. Run the migrations with user seeding
+8. Run the migrations with user seeding
 
     ```bash
     php artisan migrate:fresh --seed
 
-8. Run the migrations without seeding
+9. Run the migrations without seeding
 
     ```bash
     php artisan migrate
 
-9. Start the development server
+10. Start the development server
 
     ```bash
     php artisan serve
+
+## Database
+Database Design Schema <a href="" target="_blank">Click</a>
+
+#### Open Postman
+Download or browser login and install Postman if you don’t already have it.
+
+## API Endpoints
+
+### Public Endpoints
+| Method | Endpoint        | Description              |
+|--------|-----------------|--------------------------|
+| POST   | `/api/register` | Register a new customer  |
+| POST   | `/api/login`    | Login (Customer/Admin)   |
+| POST   | `/api/v1/logout`| Logout (Customer/Admin)   |
+
+---
+
+### Customer Endpoints (Authenticated)
+| Method | Endpoint         | Description                     |
+|--------|------------------|---------------------------------|
+| GET    | `/api/v1/customer/services`  | List all available services     |
+| POST   | `/api/v1/customer/bookings`  | Book a service                  |
+| GET    | `/api/v1/customer/bookings`  | List logged-in user's bookings  |
+
+---
+
+### Admin Endpoints (Authenticated)
+| Method | Endpoint               | Description               |
+|--------|------------------------|---------------------------|
+| POST   | `/api/v1/admin/services`        | Create a new service      |
+| PUT    | `/api/v1/admin/services/{id}`   | Update service details    |
+| DELETE | `/api/v1/admin/services/{id}`   | Delete a service          |
+| GET    | `/api/v1/admin/bookings`  | List all customer bookings|
+
