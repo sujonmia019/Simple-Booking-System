@@ -10,6 +10,7 @@ This system allows **customers** to register, view services, and make bookings. 
 - [Features](#features)  
 - [Tech Stack](#tech-stack)  
 - [Installation & Setup](#installation--setup)
+- [PHPUnit](#php-unit)  
 - [API Endpoints](#api-endpoints)  
 - [Screenshots](#screenshots)   
 
@@ -109,6 +110,9 @@ Database Design Schema <a href="https://drawsql.app/teams/instructory/diagrams/s
 
 #### Open Postman
 Download or browser login and install Postman if you don’t already have it.
+
+## PHP Unit Test
+Successfully completed seeder tests for Users, Services, and Bookings. Beginner in PHPUnit but actively practicing.
 
 ## API Endpoints
 
