@@ -1,369 +1,559 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-        "title": "Service Booking API",
-        "description": "API documentation for Service Booking System",
-        "contact": {
-            "email": "sujonbdjoin019@gmail.com"
+"openapi": "3.0.0",
+"info": {
+    "title": "Simple Booking System API",
+    "description": "Professional API documentation for Simple Booking System (Laravel Sanctum)",
+    "contact": {
+    "email": "sujonbdjoin019@gmail.com"
+    },
+    "version": "1.0.0"
+},
+"servers": [
+    {
+    "url": "http://localhost:8000/api",
+    "description": "Local API server"
+    }
+],
+"components": {
+    "securitySchemes": {
+    "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+    }
+    },
+    "schemas": {
+    "Service": {
+        "type": "object",
+        "properties": {
+        "id": {
+            "type": "integer",
+            "example": 1
         },
-        "version": "1.0.0"
-    },
-    "externalDocs": {
-        "description": "Postman Collection Link",
-        "url": "https://booking.radiantdntl.com/api/documentation"
-    },
-    "servers": [
-        {
-            "url": "http://localhost:8000/api",
-            "description": "Local API server"
+        "name": {
+            "type": "string",
+            "example": "Facial Treatment"
+        },
+        "description": {
+            "type": "string",
+            "example": "A relaxing facial spa treatment"
+        },
+        "price": {
+            "type": "number",
+            "format": "decimal",
+            "example": 75
+        },
+        "status": {
+            "type": "integer",
+            "enum": [
+            1,
+            2
+            ],
+            "example": 1,
+            "description": "1 = Active, 2 = Inactive"
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time"
         }
-    ],
-    "paths": {
-        "/api/register": {
-            "post": {
-                "tags": [
-                    "Auth"
+        }
+    },
+    "Booking": {
+        "type": "object",
+        "properties": {
+        "id": {
+            "type": "integer",
+            "example": 1
+        },
+        "user_id": {
+            "type": "integer",
+            "example": 5
+        },
+        "service_id": {
+            "type": "integer",
+            "example": 2
+        },
+        "booking_date": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-08-21"
+        },
+        "status": {
+            "type": "integer",
+            "enum": [
+            1,
+            2,
+            3
+            ],
+            "example": 1,
+            "description": "1 = Pending, 2 = Confirmed, 3 = Cancelled"
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time"
+        }
+        }
+    }
+    }
+},
+"security": [
+    {
+    "bearerAuth": []
+    }
+],
+"paths": {
+    "/register": {
+    "post": {
+        "tags": [
+        "Auth"
+        ],
+        "summary": "Register a new customer",
+        "requestBody": {
+        "required": true,
+        "content": {
+            "application/json": {
+            "schema": {
+                "required": [
+                    "full_name",
+                    "phone_number",
+                    "email",
+                    "password",
+                    "password_confirmation"
                 ],
-                "summary": "Customer Registration",
-                "operationId": "afcc4c71c73eaf15048c904cac09d806",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "name",
-                                    "email",
-                                    "password",
-                                    "password_confirmation"
-                                ],
-                                "properties": {
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "email": {
-                                        "type": "string",
-                                        "format": "email"
-                                    },
-                                    "password": {
-                                        "type": "string"
-                                    },
-                                    "password_confirmation": {
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
+                "properties": {
+                "full_name": {
+                    "type": "string",
+                    "example": "John Doe"
                 },
-                "responses": {
-                    "201": {
-                        "description": "User registered successfully"
-                    },
-                    "400": {
-                        "description": "Bad Request"
+                "phone_number": {
+                    "type": "string",
+                    "format": "Valid BD Phone Number",
+                    "example": "01743776488"
+                },
+                "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "john@example.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "12345678"
+                },
+                "password_confirmation": {
+                    "type": "string",
+                    "example": "12345678"
+                }
+                }
+            }
+            }
+        }
+        },
+        "responses": {
+            "201": {
+                "description": "User registered successfully",
+                "content": {
+                "application/json": {
+                    "example": {
+                        "status": "success",
+                        "message": "Registration successful",
+                        "data": {
+                            "user": {
+                                "id": 5,
+                                "role_name": "customer",
+                                "full_name": "ismail",
+                                "email": "sujonbdjoin@gmail.com",
+                                "phone_number": "01425784542",
+                                "created_at": "2025-08-19T05:15:41.000000Z"
+                            },
+                            "access_token": "5|GLiBJLT9d1VufTTiHAwdtVIhJcObZjcmaSGHOk0r987912b6",
+                            "token_type": "Bearer"
+                        },
+                        "response_code": 201
                     }
                 }
             }
-        },
-        "/api/login": {
-            "post": {
-                "tags": [
-                    "Auth"
+            },
+            "200": {
+                "description": "Validation error and status = false"
+            }
+        }
+    }
+    },
+    "/login": {
+    "post": {
+        "tags": [
+        "Auth"
+        ],
+        "summary": "Login (Customer/Admin)",
+        "requestBody": {
+        "required": true,
+        "content": {
+            "application/json": {
+            "schema": {
+                "required": [
+                "email",
+                "password"
                 ],
-                "summary": "User Login",
-                "operationId": "2b0c7f9d36d3c5b190b8760b8ae3633e",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "email",
-                                    "password"
-                                ],
-                                "properties": {
-                                    "email": {
-                                        "type": "string",
-                                        "format": "email"
-                                    },
-                                    "password": {
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
+                "properties": {
+                "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "sujonbdjoin019@gmail.com"
                 },
-                "responses": {
-                    "200": {
-                        "description": "Login successful"
+                "password": {
+                    "type": "string",
+                    "example": "12345678"
+                }
+                }
+            }
+            }
+        }
+        },
+        "responses": {
+        "200": {
+            "description": "Login successful",
+            "content": {
+            "application/json": {
+                "example": {
+                    "status": "success",
+                    "message": "Login successful",
+                    "data": {
+                        "user": {
+                            "id": 4,
+                            "role_name": "customer",
+                            "full_name": "ismail",
+                            "email": "sujonbdjoin019@gmail.com",
+                            "phone_number": "01425784545",
+                            "created_at": "2025-08-18T06:55:25.000000Z"
+                        },
+                        "access_token": "4|oW2WQdGHPDcK7qTWAv1OmHwNX83J6tYzckgZxP4H44630e38",
+                        "token_type": "Bearer"
                     },
-                    "401": {
-                        "description": "Invalid credentials"
+                    "response_code": 200
+                }
+            }
+            }
+        },
+        "401": {
+            "description": "Invalid credentials"
+        }
+        }
+    }
+    },
+    "/v1/logout": {
+    "post": {
+        "tags": [
+        "Auth"
+        ],
+        "summary": "Logout (Customer/Admin)",
+        "security": [
+        {
+            "bearerAuth": []
+        }
+        ],
+        "responses": {
+        "200": {
+            "description": "Logged out successfully",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "status": "success",
+                        "message": "Logged out",
+                        "data": null,
+                        "response_code": 200
                     }
                 }
             }
-        },
-        "/api/v1/logout": {
-            "post": {
-                "tags": [
-                    "Auth"
-                ],
-                "summary": "User Logout",
-                "operationId": "6e2e539f3fe42085b0123f27bf438f5a",
-                "responses": {
-                    "200": {
-                        "description": "Logged out successfully"
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
+        }
+        }
+    }
+    },
+    "/v1/customer/services": {
+    "get": {
+        "tags": [
+        "Customer"
+        ],
+        "summary": "List all available services",
+        "security": [
+        {
+            "bearerAuth": []
+        }
+        ],
+        "responses": {
+        "200": {
+            "description": "List of services",
+            "content": {
+            "application/json": {
+                "schema": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Service"
+                }
+                }
             }
-        },
-        "/api/v1/admin/bookings": {
-            "get": {
-                "tags": [
-                    "Admin"
-                ],
-                "summary": "List all bookings",
-                "operationId": "53861346c1e7e84621e36d1e4358d16e",
-                "responses": {
-                    "200": {
-                        "description": "All bookings"
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
             }
-        },
-        "/api/v1/admin/services": {
-            "post": {
-                "tags": [
-                    "Admin"
-                ],
-                "summary": "Create a new service",
-                "operationId": "8742a1e53146175378e8953595603157",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "name",
-                                    "price",
-                                    "status"
-                                ],
-                                "properties": {
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "description": {
-                                        "type": "string"
-                                    },
-                                    "price": {
-                                        "type": "number"
-                                    },
-                                    "status": {
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Service created"
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
+        }
+        }
+    }
+    },
+    "/v1/customer/bookings": {
+    "get": {
+        "tags": [
+        "Customer"
+        ],
+        "summary": "List logged-in user's bookings",
+        "security": [
+        {
+            "bearerAuth": []
+        }
+        ],
+        "responses": {
+        "200": {
+            "description": "List of bookings",
+            "content": {
+            "application/json": {
+                "schema": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Booking"
+                }
+                }
             }
-        },
-        "/api/v1/admin/services/{id}": {
-            "put": {
-                "tags": [
-                    "Admin"
-                ],
-                "summary": "Update a service",
-                "operationId": "22ae81fa8db920e0b8252294d3829b5f",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "description": {
-                                        "type": "string"
-                                    },
-                                    "price": {
-                                        "type": "number"
-                                    },
-                                    "status": {
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Service updated"
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
-            },
-            "delete": {
-                "tags": [
-                    "Admin"
-                ],
-                "summary": "Delete a service",
-                "operationId": "682bc7797864cb56d267bedc06f86676",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Service deleted"
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
             }
-        },
-        "/api/v1/customer/bookings": {
-            "get": {
-                "tags": [
-                    "Customer"
-                ],
-                "summary": "List customer's bookings",
-                "operationId": "291371009734e9be6eeca2a936cffb5a",
-                "responses": {
-                    "200": {
-                        "description": "List of bookings"
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
-            },
-            "post": {
-                "tags": [
-                    "Customer"
-                ],
-                "summary": "Add a new booking",
-                "operationId": "f0e64ebbafffe28bdcd8bb59a440d6e5",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "service_id",
-                                    "booking_date"
-                                ],
-                                "properties": {
-                                    "service_id": {
-                                        "type": "integer"
-                                    },
-                                    "booking_date": {
-                                        "type": "string",
-                                        "format": "date"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Booking created successfully"
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/customer/services": {
-            "get": {
-                "tags": [
-                    "Customer"
-                ],
-                "summary": "List available services",
-                "operationId": "235402f9ca9c906bbf29eaab5fd40247",
-                "responses": {
-                    "200": {
-                        "description": "List of services"
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
-            }
+        }
         }
     },
-    "tags": [
+    "post": {
+        "tags": [
+        "Customer"
+        ],
+        "summary": "Book a service",
+        "security": [
         {
-            "name": "Auth",
-            "description": "Authentication endpoints"
-        },
-        {
-            "name": "Admin",
-            "description": "Admin endpoints"
-        },
-        {
-            "name": "Customer",
-            "description": "Customer endpoints"
+            "bearerAuth": []
         }
-    ]
+        ],
+        "requestBody": {
+        "required": true,
+        "content": {
+            "application/json": {
+            "schema": {
+                "required": [
+                "service_id",
+                "booking_date"
+                ],
+                "properties": {
+                "service_id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "booking_date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2025-08-21"
+                }
+                }
+            }
+            }
+        }
+        },
+        "responses": {
+        "201": {
+            "description": "Booking created successfully"
+        }
+        }
+    }
+    },
+    "/v1/admin/services": {
+    "post": {
+        "tags": [
+        "Admin"
+        ],
+        "summary": "Create a new service",
+        "security": [
+        {
+            "bearerAuth": []
+        }
+        ],
+        "requestBody": {
+        "required": true,
+        "content": {
+            "application/json": {
+            "schema": {
+                "required": [
+                "name",
+                "price",
+                "status"
+                ],
+                "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Facial Treatment"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "A relaxing facial spa treatment"
+                },
+                "price": {
+                    "type": "number",
+                    "example": 75
+                },
+                "status": {
+                    "type": "integer",
+                    "enum": [
+                    1,
+                    2
+                    ],
+                    "example": 1,
+                    "description": "1 = Active, 2 = Inactive"
+                }
+                }
+            }
+            }
+        }
+        },
+        "responses": {
+        "201": {
+            "description": "Service created"
+        }
+        }
+    }
+    },
+    "/v1/admin/services/{id}": {
+    "put": {
+        "tags": [
+        "Admin"
+        ],
+        "summary": "Update service details",
+        "security": [
+        {
+            "bearerAuth": []
+        }
+        ],
+        "parameters": [
+        {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+            "type": "integer"
+            }
+        }
+        ],
+        "requestBody": {
+        "required": true,
+        "content": {
+            "application/json": {
+            "schema": {
+                "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Updated Service"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "Updated service description"
+                },
+                "price": {
+                    "type": "number",
+                    "example": 99
+                },
+                "status": {
+                    "type": "integer",
+                    "enum": [
+                    1,
+                    2
+                    ],
+                    "example": 2,
+                    "description": "1 = Active, 2 = Inactive"
+                }
+                }
+            }
+            }
+        }
+        },
+        "responses": {
+        "200": {
+            "description": "Service updated successfully"
+        }
+        }
+    },
+    "delete": {
+        "tags": [
+        "Admin"
+        ],
+        "summary": "Delete a service",
+        "security": [
+        {
+            "bearerAuth": []
+        }
+        ],
+        "parameters": [
+        {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+            "type": "integer"
+            }
+        }
+        ],
+        "responses": {
+        "200": {
+            "description": "Service deleted successfully"
+        }
+        }
+    }
+    },
+    "/v1/admin/bookings": {
+    "get": {
+        "tags": [
+        "Admin"
+        ],
+        "summary": "List all customer bookings",
+        "security": [
+        {
+            "bearerAuth": []
+        }
+        ],
+        "responses": {
+        "200": {
+            "description": "All bookings",
+            "content": {
+            "application/json": {
+                "schema": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Booking"
+                }
+                }
+            }
+            }
+        }
+        }
+    }
+    }
+},
+"tags": [
+    {
+    "name": "Auth",
+    "description": "Authentication endpoints"
+    },
+    {
+    "name": "Customer",
+    "description": "Customer endpoints"
+    },
+    {
+    "name": "Admin",
+    "description": "Admin endpoints"
+    }
+]
 }
